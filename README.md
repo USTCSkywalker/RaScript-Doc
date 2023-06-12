@@ -1,2 +1,2 @@
-# RaScript-Doc
-RaScript语法设计文档
+# 快速入门
+
