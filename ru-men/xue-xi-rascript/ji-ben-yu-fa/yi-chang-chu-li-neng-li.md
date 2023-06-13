@@ -1,22 +1,18 @@
 # 异常处理能力
 
-Framework层的管理类已经内置了异常处理措施，如果用户需要获取异常信息做定制化处理，可通过 onError(errcode : Number, errProcess : ErrorProcess)对返回的错误码进行判断并处理。&#x20;
+Framework层的管理类已经内置了异常处理措施，如果用户需要获取异常信息做定制化处理，可通过 onError(errcode : Number, errProcess : ErrorProcess)对返回的错误码进行判断并处理。
 
-常见errcode:
-
-{% code lineNumbers="true" %}
-```
-PERMISSION_INVAILD    // 权限异常
-DEVICE_INVAILD    // 设备缺失
-DEVICE_OPEN_ERROR    // 设备打开异常
-DEVICE_STATE_ERROR    // 设备状态异常
-DEVICE_CLOSE_ERROR    // 设备关闭异常
-DATA_GET_ERROR    // 数据获取异常
-DATA_SEND_ERROR    // 数据发送异常
-DATA_PROCESS_ERROR    // 数据转换异常
-IO_ERROR    // IO异常
-```
-{% endcode %}
+| 常见errcode            | 描述     |
+| -------------------- | ------ |
+| PERMISSION\_INVAILD  | 权限异常   |
+| DEVICE\_INVAILD      | 设备缺失   |
+| DEVICE\_OPEN\_ERROR  | 设备打开异常 |
+| DEVICE\_STATE\_ERROR | 设备状态异常 |
+| DEVICE\_CLOSE\_ERROR | 设备关闭异常 |
+| DATA\_GET\_ERROR     | 数据获取异常 |
+| DATA\_SEND\_ERROR    | 数据发送异常 |
+| DATA\_PROCESS\_ERROR | 数据转换异常 |
+| IO\_ERROR            | IO异常   |
 
 ErrorProcess提供用户定制化的异常处理方式
 

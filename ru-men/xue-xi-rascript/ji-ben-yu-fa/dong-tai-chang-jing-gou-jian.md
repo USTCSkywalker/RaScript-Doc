@@ -8,7 +8,7 @@ RaScript提供在@Scenarios装饰的场景描述函数中，根据使用需求�
 function stopRecording() {
     let recodingFile = "";
     let position1 = "";
-    // Mic组件：停止录音，获取⽂件路径数据
+    // Mic组件：停止录音，获取文件路径数据
     Mic(mic_local).operate(["stop", "get_lastdata"]).onGetData((result: any) => {
         recodingFile = result;
         console.log("回调了当前录⾳路径：" + recodingFile);

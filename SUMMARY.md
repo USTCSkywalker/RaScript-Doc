@@ -11,13 +11,19 @@
   * [基本语法](ru-men/xue-xi-rascript/ji-ben-yu-fa/README.md)
     * [基本资源描述](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/README.md)
       * [基本概念](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/ji-ben-gai-nian.md)
-      * [描述规范](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/miao-shu-gui-fan.md)
-      * [场景配置](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/chang-jing-pei-zhi.md)
-      * [抽象资源配置](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/chou-xiang-zi-yuan-pei-zhi.md)
-    * [数据处理](ru-men/xue-xi-rascript/ji-ben-yu-fa/shu-ju-chu-li.md)
+      * [描述规范](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/miao-shu-gui-fan/README.md)
+        * [场景配置](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/miao-shu-gui-fan/chang-jing-pei-zhi.md)
+        * [抽象资源配置](ru-men/xue-xi-rascript/ji-ben-yu-fa/ji-ben-zi-yuan-miao-shu/miao-shu-gui-fan/chou-xiang-zi-yuan-pei-zhi.md)
+    * [数据处理](ru-men/xue-xi-rascript/ji-ben-yu-fa/shu-ju-chu-li/README.md)
+      * [连续有序传递](ru-men/xue-xi-rascript/ji-ben-yu-fa/shu-ju-chu-li/lian-xu-you-xu-chuan-di.md)
+      * [单次消息订阅分发](ru-men/xue-xi-rascript/ji-ben-yu-fa/shu-ju-chu-li/dan-ci-xiao-xi-ding-yue-fen-fa.md)
     * [动态场景构建](ru-men/xue-xi-rascript/ji-ben-yu-fa/dong-tai-chang-jing-gou-jian.md)
     * [异常处理能力](ru-men/xue-xi-rascript/ji-ben-yu-fa/yi-chang-chu-li-neng-li.md)
     * [场景自适应](ru-men/xue-xi-rascript/ji-ben-yu-fa/chang-jing-zi-shi-ying.md)
+    * [跨设备资源互联](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/README.md)
+      * [跨设备资源互补](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/kua-she-bei-zi-yuan-hu-bu.md)
+      * [跨设备资源协同](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/kua-she-bei-zi-yuan-xie-tong.md)
+    * [代码多设备兼容性](ru-men/xue-xi-rascript/ji-ben-yu-fa/dai-ma-duo-she-bei-jian-rong-xing.md)
 
 ## 开发
 

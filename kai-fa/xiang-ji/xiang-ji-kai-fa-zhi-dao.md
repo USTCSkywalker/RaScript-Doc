@@ -2,25 +2,7 @@
 
 #### 静态属性
 
-{% code lineNumbers="true" %}
-```typescript
-CameraAttr {
-    cameraId : String,    // 相机类型：ALL、前置、后置、红外等
-    cameraMode : Number,     // 相机模式：PREVIEW、PHOTO、VIDEO、SNAPSHOT、STOP_PREVIEW、STOP_VIDEO、CLOSE
-    photoMode ？: Number,    // 拍照次数：0（单拍）、（>0）连拍次数
-    photoFormat ? : String,    // 照⽚格式：Bitmap、JPEG、PNG
-    photoPath ? : String,    // 照⽚存储路径
-    focusMode ? : Number,    // 相机对焦⽅式：⾃动对焦、固定对焦、微距对焦或⽆限远对焦
-    sceneMode ? : Number,    // 对特定类型的摄影场景（例如夜景、海滩场景、雪景或烛光场景）应⽤预设模式
-    flashMode ? : Number,    // 开启或关闭闪光灯，或使⽤⾃动设置
-    whiteBalance ? : Boolean,    // 开启或关闭⽩平衡设置
-    videoFormat ? : String,    // 视频格式：
-    videoPath ? : String,    // 视频存储路径
-    timeFormat ? : String,    // 照⽚或video携带时间信息
-    locationFormat ? : String,    // 照⽚或video携带位置信息
-}
-```
-{% endcode %}
+<table><thead><tr><th width="163">参数</th><th width="373">说明</th><th width="94">类型</th><th>备注</th></tr></thead><tbody><tr><td>cameraId</td><td>相机类型：ALL、前置、后置、红外等</td><td>String</td><td></td></tr><tr><td>cameraMode</td><td>相机模式：PREVIEW、PHOTO、VIDEO、SNAPSHOT、STOP_PREVIEW、STOP_VIDEO、CLOSE</td><td>Number</td><td></td></tr><tr><td>photoMode</td><td>拍照次数：0（单拍）、（>0）连拍次数</td><td>Number</td><td>可选</td></tr><tr><td>photoFormat</td><td>照片格式：Bitmap、JPEG、PNG</td><td>String</td><td>可选</td></tr><tr><td>photoPath</td><td>照片存储路径</td><td>String</td><td>可选</td></tr><tr><td>focusMode</td><td>相机对焦方式：自动对焦、固定对焦、微距对焦或无限远对焦</td><td>Number</td><td>可选</td></tr><tr><td>sceneMode</td><td>对特定类型的摄影场景（例如夜景、海滩场景、雪景或烛光场景）应用预设模式</td><td>Number</td><td>可选</td></tr><tr><td>flashMode</td><td>开启或关闭闪光灯，或使用自动设置</td><td>Number</td><td>可选</td></tr><tr><td>whiteBalance</td><td>开启或关闭白平衡设置</td><td>Boolean</td><td>可选</td></tr><tr><td>videoFormat</td><td>视频格式</td><td>String</td><td>可选</td></tr><tr><td>videoPath</td><td>视频存储路径</td><td>String</td><td>可选</td></tr><tr><td>timeFormat</td><td>照片或video携带时间信息</td><td>String</td><td>可选</td></tr><tr><td>locationFormat</td><td>照片或video携带位置信息</td><td>String</td><td>可选</td></tr></tbody></table>
 
 #### 抽象动作
 
