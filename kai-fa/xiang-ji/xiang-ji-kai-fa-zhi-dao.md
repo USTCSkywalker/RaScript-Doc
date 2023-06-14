@@ -2,20 +2,8 @@
 
 #### 静态属性
 
-<table><thead><tr><th width="163">参数</th><th width="373">说明</th><th width="94">类型</th><th>备注</th></tr></thead><tbody><tr><td>cameraId</td><td>相机类型：ALL、前置、后置、红外等</td><td>String</td><td></td></tr><tr><td>cameraMode</td><td>相机模式：PREVIEW、PHOTO、VIDEO、SNAPSHOT、STOP_PREVIEW、STOP_VIDEO、CLOSE</td><td>Number</td><td></td></tr><tr><td>photoMode</td><td>拍照次数：0（单拍）、（>0）连拍次数</td><td>Number</td><td>可选</td></tr><tr><td>photoFormat</td><td>照片格式：Bitmap、JPEG、PNG</td><td>String</td><td>可选</td></tr><tr><td>photoPath</td><td>照片存储路径</td><td>String</td><td>可选</td></tr><tr><td>focusMode</td><td>相机对焦方式：自动对焦、固定对焦、微距对焦或无限远对焦</td><td>Number</td><td>可选</td></tr><tr><td>sceneMode</td><td>对特定类型的摄影场景（例如夜景、海滩场景、雪景或烛光场景）应用预设模式</td><td>Number</td><td>可选</td></tr><tr><td>flashMode</td><td>开启或关闭闪光灯，或使用自动设置</td><td>Number</td><td>可选</td></tr><tr><td>whiteBalance</td><td>开启或关闭白平衡设置</td><td>Boolean</td><td>可选</td></tr><tr><td>videoFormat</td><td>视频格式</td><td>String</td><td>可选</td></tr><tr><td>videoPath</td><td>视频存储路径</td><td>String</td><td>可选</td></tr><tr><td>timeFormat</td><td>照片或video携带时间信息</td><td>String</td><td>可选</td></tr><tr><td>locationFormat</td><td>照片或video携带位置信息</td><td>String</td><td>可选</td></tr></tbody></table>
+<table><thead><tr><th width="163">参数</th><th width="393">说明</th><th width="94">类型</th><th>备注</th></tr></thead><tbody><tr><td>cameraId</td><td>相机类型：ALL、前置、后置、红外等</td><td>String</td><td></td></tr><tr><td>cameraMode</td><td>相机模式：PREVIEW、PHOTO、VIDEO、SNAPSHOT、STOP_PREVIEW、STOP_VIDEO、CLOSE</td><td>Number</td><td></td></tr><tr><td>photoMode</td><td>拍照次数：0（单拍）、（>0）连拍次数</td><td>Number</td><td>可选</td></tr><tr><td>photoFormat</td><td>照片格式：Bitmap、JPEG、PNG</td><td>String</td><td>可选</td></tr><tr><td>photoPath</td><td>照片存储路径</td><td>String</td><td>可选</td></tr><tr><td>focusMode</td><td>相机对焦方式：自动对焦、固定对焦、微距对焦或无限远对焦</td><td>Number</td><td>可选</td></tr><tr><td>sceneMode</td><td>对特定类型的摄影场景（例如夜景、海滩场景、雪景或烛光场景）应用预设模式</td><td>Number</td><td>可选</td></tr><tr><td>flashMode</td><td>开启或关闭闪光灯，或使用自动设置</td><td>Number</td><td>可选</td></tr><tr><td>whiteBalance</td><td>开启或关闭白平衡设置</td><td>Boolean</td><td>可选</td></tr><tr><td>videoFormat</td><td>视频格式</td><td>String</td><td>可选</td></tr><tr><td>videoPath</td><td>视频存储路径</td><td>String</td><td>可选</td></tr><tr><td>timeFormat</td><td>照片或video携带时间信息</td><td>String</td><td>可选</td></tr><tr><td>locationFormat</td><td>照片或video携带位置信息</td><td>String</td><td>可选</td></tr></tbody></table>
 
 #### 抽象动作
 
-{% code lineNumbers="true" %}
-```typescript
-onDeviceList ? : (result: List<T>)=>void    // 所有可用相机的列表回调
-onOpen ? : (result: String)=>void    // 相机打开时的回调
-onOriginData ? : (result : any)=>void    // 相机原始数据流
-onPreview ? : (result: CameraFrame)=>void    // 相机预览回调
-onPhoto ? : (result: Bitmap)=>void    // 相机捕获照片的回调
-onVideo ? : (result: CameraFrame)=>void    // 相机录像的回调
-onStopPreview ? : (result: String)=>void    // 相机停止预览的回调
-onStopVideo ? : (result: String)=>void    // 相机停止录像的回调
-onClose ? : (result: String)=>void    // 相机关闭时的回调
-```
-{% endcode %}
+<table><thead><tr><th width="379">抽象动作</th><th>说明</th></tr></thead><tbody><tr><td>onDeviceList ? : (result: List&#x3C;T>) => void</td><td>所有可用相机的列表回调</td></tr><tr><td>onOpen ? : (result: String) => void</td><td>相机打开时的回调</td></tr><tr><td>onOriginData ? : (result : any) => void</td><td>相机原始数据流</td></tr><tr><td>onPreview ? : (result: CameraFrame) => void</td><td>相机预览回调</td></tr><tr><td>onPhoto ? : (result: Bitmap) => void</td><td>相机捕获照片的回调</td></tr><tr><td>onVideo ? : (result: CameraFrame) => void</td><td>相机录像的回调</td></tr><tr><td>onStopPreview ? : (result: String) => void</td><td>相机停止预览的回调</td></tr><tr><td>onStopVideo ? : (result: String) => void</td><td>相机停止录像的回调</td></tr><tr><td>onClose ? : (result: String) => void</td><td>相机关闭时的回调</td></tr></tbody></table>

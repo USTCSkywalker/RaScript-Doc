@@ -4,7 +4,7 @@ RaScript相机模块支持相机业务的开发，开发者可以通过提供的
 
 #### 基本概念
 
-* 相机静态能力：用于描述相机的固有能力的一系列参数，比如朝向、支持的分辨率等信息。
+* 相机静态能力：用于描述相机固有能力的一系列参数，比如朝向、支持的分辨率等信息。
 * 物理相机：独立的实体摄像头设备。物理相机ID是用于标志每个物理摄像头的唯一字串。
 * 逻辑相机：多个物理相机组合出来的抽象设备，逻辑相机通过同时控制多个物理相机设备来完成相机某些功能，如大光圈、变焦等功能。逻辑摄像机ID是一个唯一的字符串，标识多个物理摄像机的抽象能力。
 * 帧捕获：相机启动后对帧的捕获动作统称为帧捕获。主要包含单帧捕获、多帧捕获、循环帧捕获。
@@ -15,3 +15,15 @@ RaScript相机模块支持相机业务的开发，开发者可以通过提供的
 #### 约束与限制
 
 * 在同一时刻只能有一个相机应用在运行中。
+* 在调用相机前，您需要添加以下权限标记：
+
+```xml
+<uses-permission android:name="android.permission.CAMERA" />
+```
+
+* 通常情况下，用户使用设备相机拍摄的所有照片都应保存在设备的公共外部存储设备中，以供所有应用访问。在Android 9（API级别28）及更低版本中，对该目录执行读写操作分别需要READ\_EXTERNAL\_STORAGE和WRITE\_EXTERNAL\_STORAGE权限：
+
+```xml
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
