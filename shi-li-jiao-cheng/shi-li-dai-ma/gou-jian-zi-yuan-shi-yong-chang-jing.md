@@ -29,7 +29,7 @@ function stopRecording() {
 // 默认的startRecording
 @Scenarios
 function startRecording() {
-    // 开启Mic，获取当前录⾳时⻓
+    // 开启Mic，获取当前录音时⻓
     Mic(mic_start).onOriginData((result: any) => {
     setRecordTime(result);
     });
@@ -41,12 +41,12 @@ function startRecording() {
 // EnergySaving, Call场景模式下的startRecording
 @Scenarios(EnergySaving, Call)
 function startRecording() {
-    //开启Mic，获取当前录⾳时⻓
+    //开启Mic，获取当前录音时⻓
     Mic(mic_start).onOriginData((result: any) => {
         setRecordTime(result);
     });
 }
-//默认的stopRecording
+// 默认的stopRecording
 @Scenarios
 function stopRecording() {
     Mic(mic_local).operate(["stop", "get_lastdata"]).onGetData((result: any) => {
@@ -60,8 +60,8 @@ function stopRecording() {
 {% code lineNumbers="true" %}
 ```typescript
 <template>
-    <button @click="startRecording">开始录⾳</button>
-    <button @click="stopRecording">停止录⾳</button>
+    <button @click="startRecording">开始录音</button>
+    <button @click="stopRecording">停止录音</button>
 </template>
 ```
 {% endcode %}

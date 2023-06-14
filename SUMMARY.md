@@ -74,3 +74,7 @@
 ## 常见问题
 
 * [常见问题](chang-jian-wen-ti/chang-jian-wen-ti.md)
+
+## 版本记录
+
+* [版本记录](ban-ben-ji-lu/ban-ben-ji-lu.md)

@@ -1,5 +1,72 @@
 # 相机开发指导
 
+#### 示例代码
+
+{% code lineNumbers="true" %}
+```typescript
+import { Cameras } from './ResManager/CameraManager/CameraManager.ts';
+import { Camera, CameraDevice } from 'react-native-vision-camera';
+
+function App(): JSX.Element {
+    const [device, setDevice] = useState<CameraDevice>();
+    const camera = useRef<Camera>(null);
+    
+    function preview() {
+        Cameras.getInstance().attr({camType:"back", operation:["preview"]}).onOpen((value) => {
+            setDevice(value);
+        }).build();
+    }
+    function takePhoto() {
+        Cameras.getInstance().operate(['takePhoto']).setCamObj(camera.current).flash('off').qualityPrioritization('speed').skipMetadata(true).onPhoto((value) => {
+            console.log("photo path:" + value);
+        }).build();
+    }
+    function cameraRecording() {
+        Cameras.getInstance().operate(['startRecording']).setCamObj(camera.current).build();
+    }
+    function stopCamRecording() {
+        Cameras.getInstance().operate(['stopRecording']).setCamObj(camera.current).onRecordingFinished((result: any) => {
+            console.log("recording path:" + result.path);
+        }).build();
+    }
+    function closeCamera() {
+        Cameras.getInstance().operate(['stop']).onStop((result: any) => {
+            setDevice(undefined);
+        }).build();
+    }
+  
+    return (
+        <SafeAreaView style={backgroundStyle}>
+            <Button onPress={() => { preview(); }}
+                title={"打开相机"}
+            />
+            {device ? (<Camera
+                ref={camera}
+                style={StyleSheet.absoluteFill}
+                device={device}
+                isActive={true}
+                photo={true}
+                video={true}
+            />) : null
+            }
+            <Button onPress={() => { takePhoto(); }}
+                title={"拍照"}
+            />
+            <Button onPress={() => { closeCamera(); }}
+                title={"关闭相机"}
+            />
+            <Button onPress={() => { cameraRecording(); }}
+                title={"开始录像"}
+            />
+            <Button onPress={() => { stopCamRecording(); }}
+                title={"关闭录像"}
+            />
+        </SafeAreaView>
+    );
+}
+```
+{% endcode %}
+
 #### 静态属性
 
 <table><thead><tr><th width="163">参数</th><th width="393">说明</th><th width="94">类型</th><th>备注</th></tr></thead><tbody><tr><td>cameraId</td><td>相机类型：ALL、前置、后置、红外等</td><td>String</td><td></td></tr><tr><td>cameraMode</td><td>相机模式：PREVIEW、PHOTO、VIDEO、SNAPSHOT、STOP_PREVIEW、STOP_VIDEO、CLOSE</td><td>Number</td><td></td></tr><tr><td>photoMode</td><td>拍照次数：0（单拍）、（>0）连拍次数</td><td>Number</td><td>可选</td></tr><tr><td>photoFormat</td><td>照片格式：Bitmap、JPEG、PNG</td><td>String</td><td>可选</td></tr><tr><td>photoPath</td><td>照片存储路径</td><td>String</td><td>可选</td></tr><tr><td>focusMode</td><td>相机对焦方式：自动对焦、固定对焦、微距对焦或无限远对焦</td><td>Number</td><td>可选</td></tr><tr><td>sceneMode</td><td>对特定类型的摄影场景（例如夜景、海滩场景、雪景或烛光场景）应用预设模式</td><td>Number</td><td>可选</td></tr><tr><td>flashMode</td><td>开启或关闭闪光灯，或使用自动设置</td><td>Number</td><td>可选</td></tr><tr><td>whiteBalance</td><td>开启或关闭白平衡设置</td><td>Boolean</td><td>可选</td></tr><tr><td>videoFormat</td><td>视频格式</td><td>String</td><td>可选</td></tr><tr><td>videoPath</td><td>视频存储路径</td><td>String</td><td>可选</td></tr><tr><td>timeFormat</td><td>照片或video携带时间信息</td><td>String</td><td>可选</td></tr><tr><td>locationFormat</td><td>照片或video携带位置信息</td><td>String</td><td>可选</td></tr></tbody></table>

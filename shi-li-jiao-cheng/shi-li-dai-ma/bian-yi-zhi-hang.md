@@ -50,7 +50,7 @@ function startRecording_default() {
 }
 // EnergySaving, Call场景模式下的startRecording
 function startRecording_EnergySaving_Call() {
-    // 开启Mic，获取当前录⾳时⻓
+    // 开启Mic，获取当前录音时⻓
     Mic.getInstance().attr(new mic_start()).onOriginData(function (result) {
         setRecordTime(result);
     }).sceAttr(new EnergySaving(), new Call()).build(); }
