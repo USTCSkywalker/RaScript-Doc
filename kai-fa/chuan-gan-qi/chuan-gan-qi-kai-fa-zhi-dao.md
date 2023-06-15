@@ -13,10 +13,12 @@ function App(): JSX.Element {
         // 设置静态属性对象
         Sensor.getInstance().attr({ sensorType: "accelerometer", operation: ["start"] }).build();
     }
+    
     function sensorStop() {
         // 链式设置静态属性
         Sensor.getInstance().sensorType("accelerometer").operate(["stop"]).build();
     }
+    
     function sensorGetData() {
         // 链式设置静态属性和回调函数
         Sensor.getInstance().sensorType("accelerometer").operate(["get_curdata"]).onGetData(function (result) {

@@ -16,19 +16,23 @@ function App(): JSX.Element {
             setDevice(value);
         }).build();
     }
+    
     function takePhoto() {
         Cameras.getInstance().operate(['takePhoto']).setCamObj(camera.current).flash('off').qualityPrioritization('speed').skipMetadata(true).onPhoto((value) => {
             console.log("photo path:" + value);
         }).build();
     }
+    
     function cameraRecording() {
         Cameras.getInstance().operate(['startRecording']).setCamObj(camera.current).build();
     }
+    
     function stopCamRecording() {
         Cameras.getInstance().operate(['stopRecording']).setCamObj(camera.current).onRecordingFinished((result: any) => {
             console.log("recording path:" + result.path);
         }).build();
     }
+    
     function closeCamera() {
         Cameras.getInstance().operate(['stop']).onStop((result: any) => {
             setDevice(undefined);

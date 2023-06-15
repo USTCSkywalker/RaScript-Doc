@@ -1,5 +1,34 @@
 # 内存开发指导
 
+#### 示例代码
+
+{% code lineNumbers="true" %}
+```typescript
+import { memListenerBuild } from './ResManager/MemManager/MemManager.js';
+
+function App(): JSX.Element {
+    function memListenerStart() {
+        var memory = {
+            attr: { 
+            },
+            action: {
+                onData: function (value) { console.log(value); }
+            }
+        };
+        memListenerBuild(memory.attr, memory.action);
+    }
+    
+    return (
+        <SafeAreaView style={backgroundStyle}>
+            <Button onPress={() => { memListenerStart(); }}
+                title={"开启内存监测"}
+            />
+        </SafeAreaView>
+    );
+}
+```
+{% endcode %}
+
 #### 静态属性
 
 <table><thead><tr><th width="149">参数</th><th width="359">说明</th><th width="142">类型</th><th>备注</th></tr></thead><tbody><tr><td>actionId</td><td>内存管理类型：开启捕获、关闭捕获等</td><td>Number</td><td></td></tr><tr><td>captureDelay</td><td>多久捕获一次</td><td>Number</td><td>可选</td></tr><tr><td>filePath</td><td>内存信息导出路径</td><td>String</td><td>可选</td></tr><tr><td>filter</td><td>捕获信息的类型</td><td>List&#x3C;Number></td><td>可选</td></tr></tbody></table>

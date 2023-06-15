@@ -1,5 +1,48 @@
 # 屏幕开发指导
 
+#### 示例代码
+
+{% code lineNumbers="true" %}
+```typescript
+import { Screen } from './ResManager/ScreenManager/ScreenManager.ts';
+import Video from 'react-native-video';
+
+function App(): JSX.Element {
+    const [uri, setUri] = useState<string>('');
+
+    function screenStart() {
+        // 链式设置静态属性和回调函数
+        Screen.getInstance().attr({ mic: false, fps: 30, bitrate: 1024000 }).operate(["start"]).build();
+    }
+
+    function screenStop() {
+        Screen.getInstance().operate(["stop", "get_curdata"]).onGetData(function (result) {
+            console.log("回调了：" + "uri: " + result);
+            setUri(result);
+        }).build();
+    }
+  
+    return (
+        <SafeAreaView style={backgroundStyle}>
+            {uri ? (
+                <View style={styles.preview}>
+                    <Video source={{ uri, }}
+                        style={styles.video}
+                    />
+                </View>
+            ) : null}
+            <Button onPress={() => { screenStart(); }}
+                title={"开始录屏"}
+            />
+            <Button onPress={() => { screenStop(); }}
+                title={"停止录屏"}
+            />
+        </SafeAreaView>
+    );
+}
+```
+{% endcode %}
+
 #### 静态属性
 
 <table><thead><tr><th width="145">参数</th><th width="407">说明</th><th width="98">类型</th><th>备注</th></tr></thead><tbody><tr><td>displayId</td><td>屏幕类型：前屏、后屏等</td><td>Number</td><td></td></tr><tr><td>displayMode</td><td>屏幕操作类型：显示、共享、录制、锁定、唤醒</td><td>Number</td><td></td></tr><tr><td>shareDisplay</td><td>屏幕共享类型：屏幕共享、区域共享、窗口共享</td><td>Number</td><td>可选</td></tr><tr><td>brightness</td><td>屏幕亮度</td><td>Number</td><td>可选</td></tr><tr><td>orientation</td><td>屏幕方向</td><td>Number</td><td>可选</td></tr></tbody></table>

@@ -7,7 +7,7 @@
 import { Mic } from './ResManager/MicManager/MicManager.ts';
 import { Location } from './ResManager/LocationManager/LocationManager.ts';
 import { Storage } from './ResManager/StorageManager/StorageManager.ts';
-import { SensorAttr, MicAttr, LocationAttr, StorageAttr } from './ResManager/api/Attr.ts';
+import { MicAttr, LocationAttr, StorageAttr } from './ResManager/api/Attr.ts';
 
 const RecordingSchema = [{
     name: "Recording1",
@@ -68,7 +68,6 @@ function App(): JSX.Element {
             position1 = JSON.stringify(result);
         }).sceAttr(new Strict()).build();
         // 存储到DB
-        // Storage.getInstance().attr({storageType:"db",operation:["create"],schema:RecordingSchema})
         Storage.getInstance().attr(new storage_insert()).onInsert(function () {
             console.log("回调了：插入函数");
             return {
