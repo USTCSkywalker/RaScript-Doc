@@ -4,41 +4,18 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-import { Screen } from './ResManager/ScreenManager/ScreenManager.ts';
-import Video from 'react-native-video';
-
-function App(): JSX.Element {
-    const [uri, setUri] = useState<string>('');
-
-    function screenStart() {
-        // 链式设置静态属性和回调函数
-        Screen.getInstance().attr({ mic: false, fps: 30, bitrate: 1024000 }).operate(["start"]).build();
-    }
-
-    function screenStop() {
-        Screen.getInstance().operate(["stop", "get_curdata"]).onGetData(function (result) {
-            console.log("回调了：" + "uri: " + result);
-            setUri(result);
-        }).build();
-    }
-  
-    return (
-        <SafeAreaView style={backgroundStyle}>
-            {uri ? (
-                <View style={styles.preview}>
-                    <Video source={{ uri, }}
-                        style={styles.video}
-                    />
-                </View>
-            ) : null}
-            <Button onPress={() => { screenStart(); }}
-                title={"开始录屏"}
-            />
-            <Button onPress={() => { screenStop(); }}
-                title={"停止录屏"}
-            />
-        </SafeAreaView>
-    );
+@Scenarios
+function screenStart() {
+  //设置静态属性1.{},2.链式逐个设置
+  Screen({ mic: false, fps: 30, bitrate: 1024000 }).operate(["start"]);
+}
+@Scenarios
+function screenStop() {
+  Screen().operate(["stop", "get_curdata"]).onGetData(function (result) {
+    console.log("回调了：" + "uri: " + result);
+    setUri(result);
+    displaypath = result;
+  });
 }
 ```
 {% endcode %}

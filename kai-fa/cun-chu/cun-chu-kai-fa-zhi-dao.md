@@ -4,82 +4,22 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-import { Mic } from './ResManager/MicManager/MicManager.ts';
-import { Storage } from './ResManager/StorageManager/StorageManager.ts';
-import { MicAttr, StorageAttr } from './ResManager/api/Attr.ts';
-
-const RecordingSchema = [{
-    name: "Recording1",
-    properties: {
-        path: 'string',
-        position: 'string'
-    }
-}];
-
-class mic_local implements MicAttr {
-    micType = "local";
-    encoding = "aac";
-    channels = 1;
-    sampleRate = 22050;
-    audioName = "wm_test1.aac"
-}
-
-class mic_start extends mic_local {
-    operation = ["start"];
-}
-
-class storage_insert implements StorageAttr {
-    storageType = "db";
-    operation = ["insert"];
-    name = "Recording1";
-    schema = RecordingSchema;
-}
-
-function App(): JSX.Element {
-    const [recordTime, setRecordTime] = useState(0);
-
-    // Scenarios有参数：Auto(自适应模式)；Call(通话模式)
-    function startRecording(): void {
-        Mic.getInstance().attr(new mic_start()).onOriginData(function (result) {
-            console.log("回调了录音时间：" + result);
-            setRecordTime(result);
-        }).sceAttr(new Auto(), new Call()).build();
-    }
-    
-    // Scenarios有参数：Strict(严格模式)
-    function stopRecording() {
-        var recodingFile = " ";
-        var position1 = " ";
-        // 停止录音，获取文件路径数据
-        Mic.getInstance().attr(new mic_local()).operate(["stop", "get_lastdata"]).onGetData(function (result) {
-            recodingFile = result;
-            console.log("回调了当前录音路径：" + recodingFile);
-        }).sceAttr(new Strict()).build();
-        // 存储到DB
-        // Storage.getInstance().attr({storageType:"db",operation:["create"],schema:RecordingSchema})
-        Storage.getInstance().attr(new storage_insert()).onInsert(function () {
-            console.log("回调了：插入函数");
-            return {
-                path: recodingFile,
-                position: position1
-            };
-        }).sceAttr(new Strict()).build();
-    }
+  @Scenarios
+  function queryDB() {
+    Storage(storage_query).onQuery(function (res) {
+      console.log("查询结果为: ");
+      res.forEach((object, index) => {
+        console.log(`Object at index ${index}:`, object);
+      });
+    });
+  }
   
-    return (
-        <SafeAreaView style={backgroundStyle}>
-            <View style={{ width: 200, height: 40, backgroundColor: "darkcyan", margin: 5 }}>
-                <Text style={{ fontSize: 16 }}>录音文件时长(S):{recordTime}</Text>
-            </View>
-            <Button onPress={() => { startRecording(); }}
-                title={"启动录音"}
-            />
-            <Button onPress={() => { stopRecording(); }}
-                title={"停止录音"}
-            />
-        </SafeAreaView>
-    );
-}
+  @Scenarios
+  function readFile() {
+    File(file_read).onRead(function () {
+      console.log("用户的readFile回调函数");
+    });
+  }
 ```
 {% endcode %}
 

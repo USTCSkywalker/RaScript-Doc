@@ -4,28 +4,14 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-import { memListenerBuild } from './ResManager/MemManager/MemManager.js';
-
-function App(): JSX.Element {
-    function memListenerStart() {
-        var memory = {
-            attr: { 
-            },
-            action: {
-                onData: function (value) { console.log(value); }
-            }
-        };
-        memListenerBuild(memory.attr, memory.action);
-    }
-    
-    return (
-        <SafeAreaView style={backgroundStyle}>
-            <Button onPress={() => { memListenerStart(); }}
-                title={"开启内存监测"}
-            />
-        </SafeAreaView>
-    );
-}
+@Scenarios
+function getMemoryInfo() {
+    Memory().memoryType('local').operate(['get_curdata']).onGetData(function (result) {
+      console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' + result.totalMemory.toFixed(2) + "GB "
+        + "当前内存利用率: " + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
+      );
+    });
+  }
 ```
 {% endcode %}
 

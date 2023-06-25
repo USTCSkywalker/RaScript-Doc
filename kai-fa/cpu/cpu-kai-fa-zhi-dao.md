@@ -4,28 +4,13 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-import { cpuListenerBuild } from './ResManager/CPUManager/CPUManager.js';
-
-function App(): JSX.Element {
-    function cpuListenerStart() {
-        var cpu = {
-            attr: { 
-            },
-            action: {
-                onData: function (value) { console.log(value); }
-            }
-        };
-        cpuListenerBuild(cpu.attr, cpu.action);
-    }
-    
-    return (
-        <SafeAreaView style={backgroundStyle}>
-            <Button onPress={() => { cpuListenerStart(); }}
-                title={"开启CPU监测"}
-            />
-        </SafeAreaView>
-    );
-}
+@Scenarios
+function getDeviceInfo() {
+    Device().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
+      console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
+        + " - " + result.systemName + " " + result.systemVersion + " 当前电量: " + result.battery * 100 + "%");
+    });
+  }
 ```
 {% endcode %}
 

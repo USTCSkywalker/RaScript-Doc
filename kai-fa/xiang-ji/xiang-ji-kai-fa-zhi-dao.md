@@ -4,69 +4,40 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-import { Cameras } from './ResManager/CameraManager/CameraManager.ts';
-import { Camera, CameraDevice } from 'react-native-vision-camera';
-
-function App(): JSX.Element {
-    const [device, setDevice] = useState<CameraDevice>();
-    const camera = useRef<Camera>(null);
-    
-    function preview() {
-        Cameras.getInstance().attr({camType:"back", operation:["preview"]}).onOpen((value) => {
-            setDevice(value);
-        }).build();
-    }
-    
-    function takePhoto() {
-        Cameras.getInstance().operate(['takePhoto']).setCamObj(camera.current).flash('off').qualityPrioritization('speed').skipMetadata(true).onPhoto((value) => {
-            console.log("photo path:" + value);
-        }).build();
-    }
-    
-    function cameraRecording() {
-        Cameras.getInstance().operate(['startRecording']).setCamObj(camera.current).build();
-    }
-    
-    function stopCamRecording() {
-        Cameras.getInstance().operate(['stopRecording']).setCamObj(camera.current).onRecordingFinished((result: any) => {
-            console.log("recording path:" + result.path);
-        }).build();
-    }
-    
-    function closeCamera() {
-        Cameras.getInstance().operate(['stop']).onStop((result: any) => {
-            setDevice(undefined);
-        }).build();
-    }
-  
-    return (
-        <SafeAreaView style={backgroundStyle}>
-            <Button onPress={() => { preview(); }}
-                title={"打开相机"}
-            />
-            {device ? (<Camera
-                ref={camera}
-                style={StyleSheet.absoluteFill}
-                device={device}
-                isActive={true}
-                photo={true}
-                video={true}
-            />) : null
-            }
-            <Button onPress={() => { takePhoto(); }}
-                title={"拍照"}
-            />
-            <Button onPress={() => { closeCamera(); }}
-                title={"关闭相机"}
-            />
-            <Button onPress={() => { cameraRecording(); }}
-                title={"开始录像"}
-            />
-            <Button onPress={() => { stopCamRecording(); }}
-                title={"关闭录像"}
-            />
-        </SafeAreaView>
-    );
+@Scenarios
+function preview() {
+  Cameras().camType(settingData.camType).operate(["preview"]).onOpen((value) => {
+    setDevice(value);
+  });
+}
+//默认场景，或节能场景
+@Scenarios(Default|EnergySaving)
+function takePhoto() {
+  Cameras().operate(['takePhoto']).setCamObj(camera.current).skipMetadata(true)
+    .onPhoto((value) => {
+      console.log("photo path:" + value);
+      photopath = value;
+    });
+}
+//默认场景，或节能场景
+@Scenarios(Default|EnergySaving)
+function takePhotoSetting() {
+  Cameras().setCamObj(camera.current).flash(settingData.flash)
+    .qualityPrioritization(settingData.qualityPrioritization)
+    .enableAutoRedEyeReduction(settingData.enableAutoRedEyeReduction)
+    .operate([""]);
+}
+@Scenarios
+function cameraRecording() {
+  Cameras().operate(['startRecording']).setCamObj(camera.current);
+}
+@Scenarios
+function stopCamRecording() {
+  Cameras().operate(['stopRecording']).setCamObj(camera.current)
+    .onRecordingFinished((result: any) => {
+    console.log("recording path:" + result.path);
+    videopath = result.path;
+  });
 }
 ```
 {% endcode %}
