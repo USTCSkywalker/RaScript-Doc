@@ -8,11 +8,11 @@
 ```typescript
 // 默认的startRecording
 @Scenarios
-    function startRecording() {
-    }
-// EnergySaving, Call场景模式下的startRecording
-@Scenarios(EnergySaving, Call)
-    function startRecording() {
-    }
+function startRecording() {
+}
+// EnergySaving, Call场景模式都为true时的startRecording
+@Scenarios(EnergySaving & Call)
+function startRecording() {
+ }
 ```
 {% endcode %}

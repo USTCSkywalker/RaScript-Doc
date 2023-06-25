@@ -17,7 +17,7 @@ function startRecording() {
     });
 }
 // EnergySaving, Call场景模式下的startRecording
-@Scenarios(EnergySaving, Call)
+@Scenarios(EnergySaving & Call)
 function startRecording() {
     // 开启Mic，获取当前录音时⻓
     Mic(mic_start).onOriginData((result: any) => {

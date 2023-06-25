@@ -15,7 +15,7 @@ RaScript是一种面向移动应用资源管理的DSL。RaScript基于TypeScript
 
 场景自适应：用户在调用场景函数时，系统会自动匹配符合当前的场景模式的场景函数，进行执行。
 
-内置资源组件：Mic、Sensor、Location、Storage、Camera、CPU、Memory、Display、 Speaker。
+内置资源组件：Mic、Sensor、Location、Storage、Camera、CPU、Memory、Screen、 Speaker。
 
 RaScript开发编译运行示意图如下：
 

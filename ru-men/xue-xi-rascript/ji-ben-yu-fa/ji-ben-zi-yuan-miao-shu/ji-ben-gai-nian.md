@@ -22,8 +22,8 @@ function startRecording() {
         setLocation(result);
     });
 }
-// @Scenarios有参形式：表示EnergySaving, Call场景模式下的startRecording
-@Scenarios(EnergySaving, Call)
+// @Scenarios有参形式：表示EnergySaving及Call场景模式同时为true时的startRecording
+@Scenarios(EnergySaving & Call)
 function startRecording() {
     // 开启Mic，获取当前录⾳时⻓
     Mic(mic_start).onOriginData((result: any) => {

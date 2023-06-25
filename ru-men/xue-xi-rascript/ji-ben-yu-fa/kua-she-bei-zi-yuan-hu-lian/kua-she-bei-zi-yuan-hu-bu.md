@@ -4,19 +4,21 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-var curvalue;
-Cameras().regitser().operate(['takePhoto']).setCamObj(camera.current).flash('off').qualityPrioritization('speed').skipMetadata(true)
-.onPhoto((value) => {
-    curvalue = value;
-    console.log("本地相机拍摄 photo:" + value);
-})
-.onGetRemote((code: int, data: any, reply: any) => {
-    if(code==DEVICE_DATA) {
-        console.log("互联设备相机拍摄 photo:" + data);
-    }
-})
-.onSetRemote(() => {
-    return {code: DEVICE_DATA, data: curvalue, reply: new reply()}
-});
+//A 手机此时是CamerasHost即相机主模式，camType为auto；
+//当本机有相机时，用本机设备拍照，调用onPhoto回调获取数据；
+//若本机无相机，则用附近从设备拍照，调用onGetRemote回调获取数据；
+@Scenarios(CamerasHost)
+function takePhoto() {
+    Cameras().regitser().camType('auto').operate(['takePhoto'])
+        .onPhoto((value) => {
+            curvalue = value;
+            console.log("本地相机拍摄 photo:" + value);
+        })
+        .onGetRemote((code: int, data: any, reply: any) => {
+            if (code == DEVICE_DATA) {
+                console.log("互联设备相机拍摄 photo:" + data);
+            }
+        });
+}
 ```
 {% endcode %}
