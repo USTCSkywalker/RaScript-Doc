@@ -21,3 +21,7 @@ function takePhoto() {
 }
 ```
 {% endcode %}
+
+```
+// Some code
+```
