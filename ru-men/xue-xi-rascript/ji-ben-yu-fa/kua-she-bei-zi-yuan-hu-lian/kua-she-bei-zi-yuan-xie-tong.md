@@ -15,6 +15,14 @@ function takePhoto() {
 ```
 {% endcode %}
 
-```
-// Some code
+```typescript
+// B手机是从模式 接收到A发送的指令后，自动触发拍照，执行下面takePhoto
+// 再回传数据
+@Scenarios(CamerasSlave)
+function takePhoto() {
+    Cameras().regitser().camType('remote').operate(['takePhoto'])
+        .onSetRemote(() => {
+            return { code: DEVICE_DATA, data: curvalue, reply: new reply() }
+        });
+}
 ```

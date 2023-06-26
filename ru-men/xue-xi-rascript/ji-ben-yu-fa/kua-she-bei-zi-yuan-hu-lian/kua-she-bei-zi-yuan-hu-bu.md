@@ -22,6 +22,14 @@ function takePhoto() {
 ```
 {% endcode %}
 
-```
-// Some code
+```typescript
+// B手机是从模式 点击拍照后，执行下面takePhoto
+// 再回传数据
+@Scenarios(CamerasSlave)
+function takePhoto() {
+    Cameras().regitser().camType('remote').operate(['takePhoto'])
+        .onSetRemote(() => {
+            return { code: DEVICE_DATA, data: curvalue, reply: new reply() }
+        });
+}
 ```
