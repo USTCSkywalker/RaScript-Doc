@@ -4,13 +4,14 @@
 
 {% code lineNumbers="true" %}
 ```typescript
+//预览
 @Scenarios
 function preview() {
   Cameras().camType(settingData.camType).operate(["preview"]).onOpen((value) => {
     setDevice(value);
   });
 }
-//默认场景，或节能场景
+//拍照：默认场景，或节能场景
 @Scenarios(Default|EnergySaving)
 function takePhoto() {
   Cameras().operate(['takePhoto']).setCamObj(camera.current).skipMetadata(true)
@@ -19,7 +20,7 @@ function takePhoto() {
       photopath = value;
     });
 }
-//默认场景，或节能场景
+//参数设置：默认场景，或节能场景
 @Scenarios(Default|EnergySaving)
 function takePhotoSetting() {
   Cameras().setCamObj(camera.current).flash(settingData.flash)
@@ -27,10 +28,12 @@ function takePhotoSetting() {
     .enableAutoRedEyeReduction(settingData.enableAutoRedEyeReduction)
     .operate([""]);
 }
+//录像
 @Scenarios
 function cameraRecording() {
   Cameras().operate(['startRecording']).setCamObj(camera.current);
 }
+//停止录像
 @Scenarios
 function stopCamRecording() {
   Cameras().operate(['stopRecording']).setCamObj(camera.current)

@@ -4,9 +4,9 @@
 
 {% code lineNumbers="true" %}
 ```typescript
+//开启Mic，获取当前录音时长
 @Scenarios
 function startRecording() {
-    //开启Mic，获取当前录音时长
     Mic(mic_start).onOriginData((result: any) => {
         console.log("回调了录音时间：" + result);
         setRecordTime(result);

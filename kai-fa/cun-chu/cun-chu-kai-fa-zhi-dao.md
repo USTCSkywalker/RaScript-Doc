@@ -4,6 +4,7 @@
 
 {% code lineNumbers="true" %}
 ```typescript
+  //db查询
   @Scenarios
   function queryDB() {
     Storage(storage_query).onQuery(function (res) {
@@ -13,7 +14,7 @@
       });
     });
   }
-  
+  //file读取
   @Scenarios
   function readFile() {
     File(file_read).onRead(function () {
@@ -31,6 +32,6 @@
 
 #### 抽象动作
 
-<table><thead><tr><th width="424">抽象动作（StorageAction）</th><th>说明</th></tr></thead><tbody><tr><td>onCreate?(callback: (result: any) => void): void</td><td>DB创建回调</td></tr><tr><td>onInsert?(callback: () => object): void</td><td>DB数据插入回调</td></tr><tr><td>onSuccess?(callback: (result: any) => object): void</td><td>操作成功回调</td></tr><tr><td>onFail?(callback: (result: any) => object): void</td><td>操作失败回调</td></tr></tbody></table>
+<table><thead><tr><th width="424">抽象动作（StorageAction）</th><th>说明</th></tr></thead><tbody><tr><td>onCreate?(callback: (result: any) => void): void</td><td>DB创建回调</td></tr><tr><td>onInsert?(callback: () => object): void</td><td>DB插入回调</td></tr><tr><td>onSuccess?(callback: (result: any) => object): void</td><td>操作成功回调</td></tr><tr><td>onFail?(callback: (result: any) => object): void</td><td>操作失败回调</td></tr><tr><td>onQuery?(callback: (result: { data: any, maxId: number }) => void): void</td><td>DB查询回调</td></tr><tr><td>onQueryByCondition?(callback: () => object): void</td><td>DB条件查询回调</td></tr><tr><td>onDelete?(callback: (result: any[]) => void): void</td><td>DB删除回调</td></tr><tr><td>onDeleteByCondition?(callback: () => object): void</td><td>DB条件删除回调</td></tr><tr><td>onUpdate?(callback:() => { query: string, updateFunction: (objectsToUpdate: object[]) => void }): void</td><td>DB更新回调</td></tr></tbody></table>
 
 <table><thead><tr><th width="425">抽象动作（FileAction）</th><th>说明</th></tr></thead><tbody><tr><td>onCreate?(callback: () => void): void</td><td>文件创建回调</td></tr><tr><td>onRead?(callback: () => void): void</td><td>文件读取回调</td></tr><tr><td>onWrite?(callback: () => string): void</td><td>文件写入回调</td></tr><tr><td>onDelete?(callback: () => void): void</td><td>文件删除回调</td></tr><tr><td>onSuccess?(callback: () => object): void</td><td>操作成功回调</td></tr><tr><td>onFail?(callback: () => object): void</td><td>操作失败回调</td></tr></tbody></table>

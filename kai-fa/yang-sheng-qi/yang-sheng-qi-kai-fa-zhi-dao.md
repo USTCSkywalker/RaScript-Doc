@@ -4,9 +4,10 @@
 
 {% code lineNumbers="true" %}
 ```typescript
+//播放声音
 @Scenarios
 function startRecording() {
-    Speaker().speakType("local").audioName(str).operate(['play']).build();
+    Speaker().speakerType("local").audioName(str).operate(['play']);
 }
 ```
 {% endcode %}

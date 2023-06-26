@@ -6,7 +6,7 @@
 
 {% code lineNumbers="true" fullWidth="false" %}
 ```typescript
-onDeviceList ? : (result: List<T>)=>void    // 所有可用资源列表回调
+onDeviceList ? : (result: List<T>)=>void: void // 所有可用资源列表回调
 ```
 {% endcode %}
 
@@ -14,15 +14,20 @@ onDeviceList ? : (result: List<T>)=>void    // 所有可用资源列表回调
 
 {% code lineNumbers="true" %}
 ```typescript
-onOriginData ? : (result : any)=>void    // 设备原始数据流
+onOriginData ? : (result : any)=>void : void  // 设备原始数据流
 ```
 {% endcode %}
+
+获得最新一次数据
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>onGetData?(callback: (result: any) => void): void //获取当前数据
+</strong></code></pre>
 
 设备打开
 
 {% code lineNumbers="true" %}
 ```typescript
-onOpen ? : (result: String)=>void    // 设备打开时的回调
+onOpen ? : (result: String)=>void: void    // 设备打开时的回调
 ```
 {% endcode %}
 
@@ -30,6 +35,6 @@ onOpen ? : (result: String)=>void    // 设备打开时的回调
 
 {% code lineNumbers="true" %}
 ```typescript
-onClose ? : (result: String)=>void    // 设备关闭时的回调
+onStop ? : (result: String)=>void: void    // 设备关闭时的回调
 ```
 {% endcode %}

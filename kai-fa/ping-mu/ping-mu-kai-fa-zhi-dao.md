@@ -4,11 +4,12 @@
 
 {% code lineNumbers="true" %}
 ```typescript
+//开始录屏
 @Scenarios
 function screenStart() {
-  //设置静态属性1.{},2.链式逐个设置
   Screen({ mic: false, fps: 30, bitrate: 1024000 }).operate(["start"]);
 }
+//停止录屏，获取数据
 @Scenarios
 function screenStop() {
   Screen().operate(["stop", "get_curdata"]).onGetData(function (result) {

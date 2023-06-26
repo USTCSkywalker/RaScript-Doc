@@ -4,17 +4,19 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-//Scenarios无参数
+//开启sensor
 @Scenarios
 function sensorStart() {
     //设置静态属性对象
     Sensor({ sensorType: "accelerometer", operation: ["start"] });
 }
+//停止sensor
 @Scenarios
 function sensorStop() {
     //链式设置静态属性
     Sensor().sensorType("accelerometer").operate(["stop"]);
 }
+//获取数据
 @Scenarios
 function sensorGetData() {
     //链式设置静态属性和回调函数
