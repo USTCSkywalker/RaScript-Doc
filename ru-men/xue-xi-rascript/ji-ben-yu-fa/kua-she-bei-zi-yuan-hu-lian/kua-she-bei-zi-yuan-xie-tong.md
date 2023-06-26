@@ -4,7 +4,7 @@
 
 {% code lineNumbers="true" %}
 ```typescript
-//手机A，相机主模式， 发送指令，控制从设备进行拍照操作
+//A手机此时是相机主模式，发送指令，控制从设备进行拍照操作
 @Scenarios(CamerasHost)
 function takePhoto() {
     Cameras().regitser().camType('remote').operate(['takePhoto'])
