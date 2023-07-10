@@ -6,7 +6,7 @@
 ```typescript
 @Scenarios
 function getDeviceInfo() {
-    Device().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
+    Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
       console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
         + " - " + result.systemName + " " + result.systemVersion + " 当前电量: " + result.battery * 100 + "%");
     });

@@ -34,7 +34,7 @@ function startRecording() {
     setRecordTime(result);
     });
     // 开启位置监听，获取当前位置
-    Location().operate(["continuous"]).onOriginData((result: any) => {
+    Location().operate("continuous").onOriginData((result: any) => {
         setLocation(result);
     });
 }

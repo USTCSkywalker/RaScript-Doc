@@ -14,13 +14,13 @@ function sensorStart() {
 @Scenarios
 function sensorStop() {
     //链式设置静态属性
-    Sensor().sensorType("accelerometer").operate(["stop"]);
+    Sensor().sensorType("accelerometer").operate("stop");
 }
 //获取数据
 @Scenarios
 function sensorGetData() {
     //链式设置静态属性和回调函数
-    Sensor().sensorType("accelerometer").operate(["get_curdata"]).onGetData((result: any) => {
+    Sensor().sensorType("accelerometer").operate("get_curdata").onGetData((result: any) => {
             console.log("回调了：" + "x: " + result.x);
         });
 }

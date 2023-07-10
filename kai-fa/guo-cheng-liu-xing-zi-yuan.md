@@ -20,7 +20,7 @@ onOriginData ? : (result : any)=>void : void  // 设备原始数据流
 
 获得最新一次数据
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>onGetData?(callback: (result: any) => void): void //获取当前数据
+<pre class="language-typescript" data-line-numbers><code class="lang-typescript"><strong>onGetData?(callback: (result: any) => void): void //获取当前数据
 </strong></code></pre>
 
 设备打开

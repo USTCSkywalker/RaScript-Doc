@@ -10,9 +10,20 @@
 @Scenarios
 function startRecording() {
 }
-// EnergySaving, Call场景模式都为true时的startRecording
+//@Scenarios 单个参数形式 表示Wifi模式下执行此startRecording
+@Scenarios(Wifi)
+function startRecording() {
+}
+//@Scenarios 并“&”参数形式
+//表示EnergySaving, Call场景模式都为true时的startRecording
 @Scenarios(EnergySaving & Call)
 function startRecording() {
  }
+//@Scenarios 或“｜”参数形式
+//表示Offline或CameraHost场景模式下的startRecording
+ @Scenarios(Offline | CameraHost)
+function startRecording() {
+    
+}
 ```
 {% endcode %}

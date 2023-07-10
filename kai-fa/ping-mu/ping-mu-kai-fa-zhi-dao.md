@@ -7,7 +7,7 @@
 //开始录屏
 @Scenarios
 function screenStart() {
-  Screen({ mic: false, fps: 30, bitrate: 1024000 }).operate(["start"]);
+  Screen({ mic: false, fps: 30, bitrate: 1024000 }).operate("start");
 }
 //停止录屏，获取数据
 @Scenarios

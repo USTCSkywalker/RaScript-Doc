@@ -6,7 +6,7 @@
 ```typescript
 @Scenarios
 function getMemoryInfo() {
-    Memory().memoryType('local').operate(['get_curdata']).onGetData(function (result) {
+    Memory().memoryType('local').operate('get_curdata').onGetData(function (result) {
       console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' + result.totalMemory.toFixed(2) + "GB "
         + "当前内存利用率: " + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
       );

@@ -8,16 +8,13 @@
 Sensor(sensor_start);
 Sensor({ sensorType: "accelerometer", operation: ["start"] });
 // 链式设置静态属性
-Sensor().sensorType("accelerometer").operate(["stop"]);
+Sensor().sensorType("accelerometer").operate("stop");
 ```
 {% endcode %}
 
 如果需要，可以设置回调函数，进行自定义处理：
 
-{% code lineNumbers="true" %}
-```typescript
-Sensor().sensorType("accelerometer").operate(["get_curdata"]).onGetData((result: any) => {
-    console.log("回调了：" + "x: " + result.x);
+<pre class="language-typescript" data-line-numbers><code class="lang-typescript"><strong>Sensor().sensorType("accelerometer").operate("get_curdata").onGetData((result: any) => {
+</strong>    console.log("回调了：" + "x: " + result.x);
 });
-```
-{% endcode %}
+</code></pre>

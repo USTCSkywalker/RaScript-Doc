@@ -27,7 +27,7 @@ function takePhoto() {
 // 再回传数据
 @Scenarios(CamerasSlave)
 function takePhoto() {
-    Cameras().regitser().camType('remote').operate(['takePhoto'])
+    Cameras().regitser().camType('local').operate(['takePhoto'])
         .onSetRemote(() => {
             return { code: DEVICE_DATA, data: curvalue, reply: new reply() }
         });

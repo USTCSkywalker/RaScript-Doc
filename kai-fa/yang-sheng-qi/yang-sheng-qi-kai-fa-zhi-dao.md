@@ -7,7 +7,7 @@
 //播放声音
 @Scenarios
 function startRecording() {
-    Speaker().speakerType("local").audioName(str).operate(['play']);
+    Speaker().speakerType("local").audioName(str).operate('play');
 }
 ```
 {% endcode %}
