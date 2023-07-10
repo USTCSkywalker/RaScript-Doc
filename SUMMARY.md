@@ -62,11 +62,6 @@
   * [编译执行](shi-li-jiao-cheng/shi-li-dai-ma/bian-yi-zhi-hang.md)
 * [Codelabs](shi-li-jiao-cheng/codelabs.md)
 
-## 测试
-
-* [测试概述](ce-shi/ce-shi-gai-shu.md)
-* [测试标准](ce-shi/ce-shi-biao-zhun.md)
-
 ## 术语
 
 * [术语](shu-yu/shu-yu.md)
