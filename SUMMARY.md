@@ -23,7 +23,8 @@
     * [跨设备资源互联](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/README.md)
       * [跨设备资源互补](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/kua-she-bei-zi-yuan-hu-bu.md)
       * [跨设备资源协同](ru-men/xue-xi-rascript/ji-ben-yu-fa/kua-she-bei-zi-yuan-hu-lian/kua-she-bei-zi-yuan-xie-tong.md)
-    * [代码多设备兼容性](ru-men/xue-xi-rascript/ji-ben-yu-fa/dai-ma-duo-she-bei-jian-rong-xing.md)
+    * [代码多设备兼容](ru-men/xue-xi-rascript/ji-ben-yu-fa/dai-ma-duo-she-bei-jian-rong.md)
+    * [同声明式UI兼容](ru-men/xue-xi-rascript/ji-ben-yu-fa/tong-sheng-ming-shi-ui-jian-rong.md)
 
 ## 开发
 

@@ -9,7 +9,7 @@
 // 若本机无相机，则用附近从设备拍照，调用onGetRemote回调获取数据；
 @Scenarios(CamerasHost)
 function takePhoto() {
-    Cameras().regitser().camType('auto').operate(['takePhoto'])
+    Cameras().regitser().camType('auto').operate('takePhoto')
         .onPhoto((value) => {
             console.log("本地相机拍摄 photo:" + value);
         })
@@ -27,7 +27,7 @@ function takePhoto() {
 // 再回传数据
 @Scenarios(CamerasSlave)
 function takePhoto() {
-    Cameras().regitser().camType('local').operate(['takePhoto'])
+    Cameras().regitser().camType('local').operate('takePhoto')
         .onSetRemote(() => {
             return { code: DEVICE_DATA, data: curvalue, reply: new reply() }
         });

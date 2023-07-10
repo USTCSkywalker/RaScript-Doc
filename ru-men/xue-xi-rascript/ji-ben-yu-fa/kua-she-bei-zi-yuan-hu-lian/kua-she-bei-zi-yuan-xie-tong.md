@@ -7,7 +7,7 @@
 //A手机此时是相机主模式，发送指令，控制从设备进行拍照操作
 @Scenarios(CamerasHost)
 function takePhoto() {
-    Cameras().regitser().camType('remote').operate(['takePhoto'])
+    Cameras().regitser().camType('remote').operate('takePhoto')
         .onSetRemote(() => {
             return { code: DEVICE_CONTROL, data: curvalue, reply: new reply() }
         });
@@ -20,7 +20,7 @@ function takePhoto() {
 // 再回传数据
 @Scenarios(CamerasSlave)
 function takePhoto() {
-    Cameras().regitser().camType('local').operate(['takePhoto'])
+    Cameras().regitser().camType('local').operate('takePhoto')
         .onSetRemote(() => {
             return { code: DEVICE_DATA, data: curvalue, reply: new reply() }
         });
