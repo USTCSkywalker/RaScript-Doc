@@ -11,12 +11,21 @@ function getDeviceInfo() {
         + " - " + result.systemName + " " + result.systemVersion + " 当前电量: " + result.battery * 100 + "%");
     });
   }
+  /斐波那契数计算
+@Scenarios
+function fibonacci() {
+Device().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
+task(getFibonncci).onGetData(function (result) {
+      console.log("计算结果为: " + result);
+    });
+}
+
 ```
 {% endcode %}
 
 #### 静态属性
 
-<table><thead><tr><th width="135">参数</th><th width="425">说明</th><th width="90">类型</th><th>备注</th></tr></thead><tbody><tr><td>deviceType</td><td>设备管理类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>CPU捕获操作</td><td>String[]</td><td>可选</td></tr></tbody></table>
+<table><thead><tr><th width="135">参数</th><th width="425">说明</th><th width="90">类型</th><th>备注</th></tr></thead><tbody><tr><td>deviceType</td><td>设备管理类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>CPU捕获操作</td><td>String[]</td><td>可选</td></tr><tr><td>taskType</td><td>待执行任务的类型</td><td>String</td><td>可选</td></tr><tr><td>task</td><td>待执行任务</td><td>object</td><td>可选</td></tr></tbody></table>
 
 #### 抽象动作
 
