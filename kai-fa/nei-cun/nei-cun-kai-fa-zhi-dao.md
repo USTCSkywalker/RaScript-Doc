@@ -34,7 +34,7 @@ function getShareVar() {
 
 #### 静态属性
 
-<table><thead><tr><th width="147">参数</th><th width="412">说明</th><th width="90">类型</th><th>备注</th></tr></thead><tbody><tr><td>memoryType</td><td>内存类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>内存捕获操作</td><td>String[]</td><td>可选</td></tr><tr><td>scope</td><td>变量作用范围</td><td>String[]</td><td>可选</td></tr><tr><td>content</td><td>变量</td><td>object</td><td>可选</td></tr></tbody></table>
+<table><thead><tr><th width="141">参数</th><th width="175">说明</th><th width="334">类型</th><th>备注</th></tr></thead><tbody><tr><td>memoryType</td><td>内存类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>内存捕获操作</td><td>String[]</td><td>可选</td></tr><tr><td>scope</td><td>变量作用范围</td><td>String[]</td><td>可选</td></tr><tr><td>content</td><td>变量</td><td>object</td><td>可选</td></tr><tr><td>onTrimMemory</td><td>内存可用状态</td><td>'TRIM_MEMORY_COMPLETE' | 'TRIM_MEMORY_MODERATE' | 'TRIM_MEMORY_BACKGROUND' | 'TRIM_MEMORY_UI_HIDDEN' | 'TRIM_MEMORY_RUNNING_CRITICAL' | 'TRIM_MEMORY_RUNNING_LOW' | 'TRIM_MEMORY_RUNNING_MODERATE'</td><td>可选</td></tr><tr><td>processMemoryInfo</td><td>一个或多个进程的内存使用情况</td><td>String[]</td><td>可选</td></tr><tr><td>runningAppProcesses</td><td>设备上正在运行的应用程序进程的列表</td><td>List&#x3C;></td><td>可选</td></tr><tr><td>isLowRamDevice</td><td>设备是否为RAM低于1GB的低内存设备</td><td>Boolean</td><td>可选</td></tr></tbody></table>
 
 #### 抽象动作
 
