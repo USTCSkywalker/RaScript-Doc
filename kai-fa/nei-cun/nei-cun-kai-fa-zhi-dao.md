@@ -1,34 +1,51 @@
 # 内存开发指导
 
-#### 示例代码
+#### 示例代码（RaScript开发范式）
 
 {% code lineNumbers="true" %}
-```typescript
+```javascript
+// 获取内存的相关信息
 @Scenarios
 function getMemoryInfo() {
-    Memory().memoryType('local').operate('get_curdata').onGetData(function (result) {
-      console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' + result.totalMemory.toFixed(2) + "GB "
-        + "当前内存利用率: " + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
-      );
-    });
-  }
+  Memory().memoryType('local').operate('get_curdata').onGetData(function (result) {
+    console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' 
+      + result.totalMemory.toFixed(2) + "GB " + "当前内存利用率: " 
+      + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
+    );
+  });
+}
   
 @Scenarios
 function setShareVar() {
-    Memory().memoryType('local').operate('set_data')
-    .content({name:"Jack",age:10,5:true})
-    .scope(['rs1','rs2']);
-  }
+  Memory().memoryType('local').operate('set_data')
+  .content({name:"Jack",age:10,5:true})
+  .scope(['rs1','rs2']);
+}
 
 @Scenarios
 function getShareVar() {
-    Memory().memoryType('local').operate('get_data')
-    .content({name:null})
-    .scope(['rs1']).onGetData(function (result) {
-      console.log('name:',result);
-    });;
-  }
-  
+  Memory().memoryType('local').operate('get_data')
+  .content({name:null})
+  .scope(['rs1']).onGetData(function (result) {
+    console.log('name:',result);
+  });;
+}
+```
+{% endcode %}
+
+#### 编译后TypeScript代码
+
+{% code lineNumbers="true" %}
+```typescript
+// 获取内存的相关信息
+function getMemoryInfo() {
+  Memory.getInstance().memoryType('local').operate(['get_curdata']).onGetData(function (result) {
+    console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' 
+      + result.totalMemory.toFixed(2) + "GB " + "当前内存利用率: " 
+      + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
+    );
+  }).build();
+}
 ```
 {% endcode %}
 

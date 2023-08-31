@@ -1,23 +1,43 @@
 # CPU开发指导
 
-#### 示例代码
+#### 示例代码（RaScript开发范式）
+
+{% code lineNumbers="true" %}
+```javascript
+// 获取设备的相关信息
+@Scenarios
+function getDeviceInfo() {
+  Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
+    console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
+      + " 系统版本：" + result.systemName + " " + result.systemVersion 
+      + " 当前电量：" + result.battery * 100 + "%"
+      + " 正在充电：" + result.charging + " 横屏模式：" + result.landscape);
+  });
+}
+  
+//斐波那契数计算
+@Scenarios
+function fibonacci() {
+  Device().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
+    task(getFibonncci).onGetData(function (result) {
+      console.log("计算结果为: " + result);
+    });
+}
+```
+{% endcode %}
+
+#### 编译后TypeScript代码
 
 {% code lineNumbers="true" %}
 ```typescript
-@Scenarios
+// 获取设备的相关信息
 function getDeviceInfo() {
-    Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
-      console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
-        + " - " + result.systemName + " " + result.systemVersion + " 当前电量: " + result.battery * 100 + "%");
-    });
-  }
-  /斐波那契数计算
-@Scenarios
-function fibonacci() {
-Device().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
-task(getFibonncci).onGetData(function (result) {
-      console.log("计算结果为: " + result);
-    });
+  Device.getInstance().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
+    console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
+      + " 系统版本：" + result.systemName + " " + result.systemVersion 
+      + " 当前电量：" + result.battery * 100 + "%"
+      + " 正在充电：" + result.charging + " 横屏模式：" + result.landscape);
+  }).build();
 }
 
 ```
