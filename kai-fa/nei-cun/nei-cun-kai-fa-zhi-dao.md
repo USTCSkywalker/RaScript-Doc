@@ -2,20 +2,18 @@
 
 #### 示例代码（RaScript开发范式）
 
-{% code lineNumbers="true" %}
-```javascript
-// 获取内存的相关信息
+<pre class="language-javascript" data-line-numbers><code class="lang-javascript">// 获取内存使用情况并计算当前内存利用率
 @Scenarios
 function getMemoryInfo() {
   Memory().memoryType('local').operate('get_curdata').onGetData(function (result) {
-    console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' 
-      + result.totalMemory.toFixed(2) + "GB " + "当前内存利用率: " 
-      + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
-    );
+    console.log("内存使用情况：" + result.usedMemory.toFixed(2) + 'GB/' 
+      + result.totalMemory.toFixed(2) + "GB " + "当前内存利用率：" 
+      + (result.usedMemory / result.totalMemory).toFixed(2) + '%');
   });
 }
-  
-@Scenarios
+
+<strong>// 设置变量的共享范围
+</strong>@Scenarios
 function setShareVar() {
   Memory().memoryType('local').operate('set_data')
   .content({name:"Jack",age:10,5:true})
@@ -30,20 +28,18 @@ function getShareVar() {
     console.log('name:',result);
   });;
 }
-```
-{% endcode %}
+</code></pre>
 
 #### 编译后TypeScript代码
 
 {% code lineNumbers="true" %}
 ```typescript
-// 获取内存的相关信息
+// 获取内存使用情况并计算当前内存利用率
 function getMemoryInfo() {
   Memory.getInstance().memoryType('local').operate(['get_curdata']).onGetData(function (result) {
     console.log("内存使用情况: " + result.usedMemory.toFixed(2) + 'GB/' 
       + result.totalMemory.toFixed(2) + "GB " + "当前内存利用率: " 
-      + (result.usedMemory / result.totalMemory).toFixed(2) + '%'
-    );
+      + (result.usedMemory / result.totalMemory).toFixed(2) + '%');
   }).build();
 }
 ```

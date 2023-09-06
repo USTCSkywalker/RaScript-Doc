@@ -8,19 +8,25 @@
 @Scenarios
 function getDeviceInfo() {
   Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
-    console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
-      + " 系统版本：" + result.systemName + " " + result.systemVersion 
-      + " 当前电量：" + result.battery * 100 + "%"
-      + " 正在充电：" + result.charging + " 横屏模式：" + result.landscape);
+    console.log("设备信息：" + result.deviceBrand + " " + result.deviceModel
+      + " 系统版本：" + result.systemName + " " + result.systemVersion);
   });
 }
-  
-//斐波那契数计算
+
+// 获取电池的相关信息
+function getBatteryInfo() {
+  Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
+    console.log("当前电量：" + result.battery * 100 + "%" 
+      + " 正在充电：" + result.charging);
+  });
+}
+
+// 斐波那契数计算
 @Scenarios
 function fibonacci() {
   Device().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
     task(getFibonncci).onGetData(function (result) {
-      console.log("计算结果为: " + result);
+      console.log("计算结果为：" + result);
     });
 }
 ```
@@ -34,12 +40,22 @@ function fibonacci() {
 function getDeviceInfo() {
   Device.getInstance().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
     console.log("设备信息: " + result.deviceBrand + " " + result.deviceModel
-      + " 系统版本：" + result.systemName + " " + result.systemVersion 
-      + " 当前电量：" + result.battery * 100 + "%"
-      + " 正在充电：" + result.charging + " 横屏模式：" + result.landscape);
+      + " 系统版本：" + result.systemName + " " + result.systemVersion);
   }).build();
 }
 
+// 获取电池的相关信息
+function getBatteryInfo() {
+  Device.getInstance().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
+    console.log("当前电量：" + result.battery * 100 + "%" 
+      + " 正在充电：" + result.charging);
+  }).build();
+}
+
+// CPU性能监控
+function cpuListenerStart() {
+  cpuListener();
+}
 ```
 {% endcode %}
 

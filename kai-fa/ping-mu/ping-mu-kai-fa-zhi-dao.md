@@ -18,13 +18,21 @@ layout:
 
 {% code lineNumbers="true" %}
 ```javascript
+// 获取屏幕的相关信息
+function getDisplayInfo() {
+  Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
+    console.log("横屏模式：" + result.landscape + " 是否刘海屏：" + result.hasNotch
+    + " 字体缩放比例：" + result.fontScale);
+  });
+}
+
 // 开始录屏
 @Scenarios
 function screenStart() {
   Screen({ mic: false, fps: 30, bitrate: 1024000 }).operate("start");
 }
 
-// 停止录屏，获取数据
+// 停止录屏并获取数据
 @Scenarios
 function screenStop() {
   Screen().operate(["stop", "get_curdata"]).onGetData(function (result) {
@@ -46,15 +54,23 @@ function screenShow() {
 
 {% code lineNumbers="true" %}
 ```typescript
+// 获取屏幕的相关信息
+function getDisplayInfo() {
+  Device.getInstance().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
+    console.log("横屏模式：" + result.landscape + " 是否刘海屏：" + result.hasNotch
+    + " 字体缩放比例：" + result.fontScale);
+  }).build();
+}
+
 // 开始录屏
 function screenStart_default() { 
-  // 设置静态属性1.{},2.链式逐个设置
+  // 设置静态属性1.{}，2.链式逐个设置
   Screen.getInstance().attr({ 
     mic: false, fps: 30, bitrate: 1024000 
   }).operate(["start"]).build(); 
 }
   
-// 停止录屏，获取数据
+// 停止录屏并获取数据
 function screenStop_default() { 
   Screen.getInstance().operate(["stop", "get_curdata"]).onGetData(function (result) {
     console.log("回调了：" + "uri: " + result);
