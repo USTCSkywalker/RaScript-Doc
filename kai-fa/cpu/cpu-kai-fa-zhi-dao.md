@@ -17,7 +17,7 @@ function createThread() {
 function fibonacciPool() {
   vCPU().threadPool(5).execute('Async').powerMode("Performance").task(getFibonncci)
   .onRun(function (result) {
-      console.log("计算结果为：" + result);
+    console.log("计算结果为：" + result);
   });
 }
 
@@ -42,7 +42,7 @@ function getBatteryInfo() {
 // 斐波那契数计算
 @Scenarios
 function fibonacci() {
-  Device().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
+  vCPU().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
     task(getFibonncci).onGetData(function (result) {
       console.log("计算结果为：" + result);
     });
@@ -54,6 +54,21 @@ function fibonacci() {
 
 {% code lineNumbers="true" %}
 ```typescript
+// 创建线程
+function createThread() {
+  vCPU.getInstance().id(1).name('testThread').priority(3).onCreate(function() {
+    console.log("线程创建成功");
+  }).build();
+}
+
+// 利用线程池执行斐波那契数计算任务
+function fibonacciPool() {
+  vCPU.getInstance().threadPool(5).execute('Async').powerMode("Performance").task(getFibonncci)
+  .onRun(function (result) {
+    console.log("计算结果为：" + result);
+  }).build();
+}
+
 // 获取设备的相关信息
 function getDeviceInfo() {
   Device.getInstance().deviceType('local').operate(['get_curdata']).onGetData(function (result) {
