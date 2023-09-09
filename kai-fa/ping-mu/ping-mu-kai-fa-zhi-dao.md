@@ -20,13 +20,14 @@ layout:
 ```javascript
 // 将内容输出到指定屏幕并设置显示参数
 @Scenarios
-function screenShow() {
+function displayShow() {
   Screen().operate('play').content(File).displayType('front').microphoneType('front')
   .resolution('1920*1080').brightness(80).orientation(90).refreshRate(60)
   .hdrTypes('HDR_HDR10');
 }
 
 // 获取屏幕的相关信息
+@Scenarios
 function getDisplayInfo() {
   Screen().displayType('front').operate('get_curdata').onGetData(function (result) {
     console.log("横屏模式：" + result.landscape + " 是否刘海屏：" + result.hasNotch
@@ -62,6 +63,13 @@ function screenShow() {
 
 {% code lineNumbers="true" %}
 ```typescript
+// 将内容输出到指定屏幕并设置显示参数
+function displayShow() {
+  Screen.getInstance().operate('play').content(File).displayType('front').microphoneType('front')
+  .resolution('1920*1080').brightness(80).orientation(90).refreshRate(60)
+  .hdrTypes('HDR_HDR10').build();
+}
+
 // 获取屏幕的相关信息
 function getDisplayInfo() {
   Screen.getInstance().displayType('front').operate(['get_curdata']).onGetData(function (result) {
