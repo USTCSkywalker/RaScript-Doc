@@ -4,6 +4,23 @@
 
 {% code lineNumbers="true" %}
 ```javascript
+// 创建线程
+@Scenarios
+function createThread() {
+  vCPU().id(1).name('testThread').priority(3).onCreate(function() {
+    console.log("线程创建成功");
+  });
+}
+
+// 利用线程池执行斐波那契数计算任务
+@Scenarios
+function fibonacciPool() {
+  (Cpv).deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
+    task(getFibonncci).onGetData(function (result) {
+      console.log("计算结果为：" + result);
+    });
+}
+
 // 获取设备的相关信息
 @Scenarios
 function getDeviceInfo() {
@@ -14,6 +31,7 @@ function getDeviceInfo() {
 }
 
 // 获取电池的相关信息
+@Scenarios
 function getBatteryInfo() {
   Device().deviceType('local').operate('get_curdata').onGetData(function (result) {
     console.log("当前电量：" + result.battery * 100 + "%" 
