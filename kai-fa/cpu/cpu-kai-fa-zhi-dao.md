@@ -65,4 +65,4 @@ function cpuListenerStart() {
 
 #### 抽象动作
 
-<table><thead><tr><th width="407">抽象动作</th><th>说明</th></tr></thead><tbody><tr><td>onGetData?(callback: (result: any) => void): void</td><td>获取当前数据</td></tr></tbody></table>
+<table><thead><tr><th width="407">抽象动作</th><th>说明</th></tr></thead><tbody><tr><td>onGetData?(callback: (result: any) => void): void</td><td>获取当前数据</td></tr><tr><td>onRun</td><td>任务执行的回调</td></tr><tr><td>onThreadList</td><td>返回可用线程列表</td></tr><tr><td>onCreate</td><td>创建线程的回调</td></tr><tr><td>onDestroy</td><td>销毁线程的回调</td></tr><tr><td>onSleep</td><td>休眠线程的回调</td></tr><tr><td>onGetPriority</td><td>获取线程优先级</td></tr><tr><td>onGetState</td><td>获取线程状态</td></tr><tr><td>onGetCurrentThermalStatus</td><td>获取设备当前的发热状态</td></tr><tr><td>onGetElapsedCpuTime</td><td>获取进程已运行时间</td></tr><tr><td>onGetPoolSize</td><td>获取线程池中当前的线程数量</td></tr></tbody></table>
