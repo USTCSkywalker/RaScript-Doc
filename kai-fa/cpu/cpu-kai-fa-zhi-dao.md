@@ -15,10 +15,10 @@ function createThread() {
 // 利用线程池执行斐波那契数计算任务
 @Scenarios
 function fibonacciPool() {
-  (Cpv).deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
-    task(getFibonncci).onGetData(function (result) {
+  vCPU().threadPool(5).execute('Async').powerMode("Performance").task(getFibonncci)
+  .onRun(function (result) {
       console.log("计算结果为：" + result);
-    });
+  });
 }
 
 // 获取设备的相关信息
