@@ -12,6 +12,14 @@ function createSharedMemory() {
   });
 }
 
+// 创建共享内存的内存映射
+@Scenarios
+function createMmap() {
+  Memory().name('testSharedMemory').prot('READ').offset(32).length(128).onMap(function() {
+    console.log("内存映射已创建");
+  });
+}
+
 // 获取内存使用情况并计算当前内存利用率
 @Scenarios
 function getMemoryInfo() {
@@ -50,6 +58,13 @@ function getShareVar() {
 function createSharedMemory() {
   Memory.getInstance().name('testSharedMemory').size(256).onCreateSharedMemory(function() {
     console.log("共享内存已创建");
+  }).build();
+}
+
+// 创建共享内存的内存映射
+function createMmap() {
+  Memory.getInstance().name('testSharedMemory').prot('READ').offset(32).length(128).onMap(function() {
+    console.log("内存映射已创建");
   }).build();
 }
 
