@@ -12,12 +12,12 @@ function createThread() {
   });
 }
 
-// 利用线程池执行斐波那契数计算任务
+// 利用线程池执行网络爬虫任务
 @Scenarios
-function fibonacciPool() {
-  vCPU().threadPool(5).execute('Async').powerMode("Performance").task(getFibonncci)
+function crawlerPool() {
+  vCPU().threadPool(5).execute('Async').powerMode('Balance').task(webCrawler)
   .onRun(function (result) {
-    console.log("计算结果为：" + result);
+    console.log(result);
   });
 }
 
@@ -43,7 +43,7 @@ function getBatteryInfo() {
 @Scenarios
 function fibonacci() {
   vCPU().deviceType('local').operate('get_curdata').taskType("CPU_INTENSIVE").
-    task(getFibonncci).onGetData(function (result) {
+    task(getFibonacci).onGetData(function (result) {
       console.log("计算结果为：" + result);
     });
 }
@@ -61,11 +61,11 @@ function createThread() {
   }).build();
 }
 
-// 利用线程池执行斐波那契数计算任务
-function fibonacciPool() {
-  vCPU.getInstance().threadPool(5).execute('Async').powerMode("Performance").task(getFibonncci)
+// 利用线程池执行网络爬虫任务
+function crawlerPool() {
+  vCPU.getInstance().threadPool(5).execute('Async').powerMode('Balance').task(webCrawler)
   .onRun(function (result) {
-    console.log("计算结果为：" + result);
+    console.log(result);
   }).build();
 }
 
