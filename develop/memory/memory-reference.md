@@ -34,15 +34,13 @@ function getMemoryInfo() {
 @Scenarios
 function setShareVar() {
   Memory().memoryType('local').operate('set_data')
-  .content({name: "Jack", age: 10, 5: true})
-  .scope(['rs1', 'rs2']);
+  .content({name: "Jack", age: 10, 5: true}).scope(['rs1', 'rs2']);
 }
 
 // 获取共享内容
 @Scenarios
 function getShareVar() {
-  Memory().memoryType('local').operate('get_data')
-  .content({name: null})
+  Memory().memoryType('local').operate('get_data').content({name: null})
   .scope(['rs1']).onGetData(function (result) {
     console.log('name: ', result);
   });

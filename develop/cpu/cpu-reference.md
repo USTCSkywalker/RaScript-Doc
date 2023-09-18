@@ -7,7 +7,7 @@
 // 创建线程
 @Scenarios
 function createThread() {
-  vCPU().id(1).name('testThread').priority(3).onCreate(function() {
+  vCPU().name('testThread').priority(3).onCreate(function() {
     console.log("线程创建成功");
   });
 }
