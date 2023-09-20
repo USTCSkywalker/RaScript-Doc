@@ -22,6 +22,15 @@ function createPool() {
   });
 }
 
+// 使用线程池执行任务
+@Scenarios
+function photoPool() {
+  vCPU().poolName('testPool').task(takePhoto).taskType('IO')
+  .onRun(function (value) {
+    console.log("照片保存路径：" + value);
+  });
+}
+
 // 获取设备的相关信息
 @Scenarios
 function getDeviceInfo() {
@@ -62,12 +71,20 @@ function createThread() {
   }).build();
 }
 
-// 利用线程池执行网络爬虫任务
-function crawlerPool() {
-  vCPU.getInstance().threadPool(6).MaxPool(13).keepAliveTime(1).timeUnit('Microseconds')
-  .powerMode('Balance').task(webCrawler).execMode('Async')
-  .taskType('CPU').onRun(function (result) {
-    console.log(result);
+// 创建线程池
+function createPool() {
+  vCPU.getInstance().poolName('testPool').threadPool(6).MaxPool(13).keepAliveTime(1)
+  .timeUnit('Microseconds').powerMode('Balance').execMode('Async')
+  .onCreatePool(function() {
+    console.log("线程池创建成功");
+  }).build();
+}
+
+// 使用线程池执行任务
+function photoPool() {
+  vCPU.getInstance().poolName('testPool').task(takePhoto).taskType('IO')
+  .onRun(function (value) {
+    console.log("照片保存路径：" + value);
   }).build();
 }
 
