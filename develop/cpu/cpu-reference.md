@@ -77,15 +77,6 @@ function getBatteryInfo() {
       + " 正在充电：" + result.charging);
   });
 }
-
-// 斐波那契数计算
-@Scenarios
-function fibonacci() {
-  vCPU().deviceType('local').operate('get_curdata').taskType('CPU')
-  .task(getFibonacci).onGetData(function (result) {
-    console.log("计算结果为：" + result);
-  });
-}
 ```
 {% endcode %}
 
@@ -102,18 +93,46 @@ function createThread() {
 
 // 创建线程池
 function createPool() {
-  vCPU.getInstance().poolName('testPool').threadPool(6).MaxPool(13).keepAliveTime(1)
-  .timeUnit('Microseconds').powerMode('Balance').execMode('Async')
-  .onCreatePool(function() {
+  vCPU.getInstance().poolName('testPool').threadPool(6).MaxPool(13)
+  .keepAliveTime(1).timeUnit('Microseconds').powerMode('Balance')
+  .execMode('Async').onCreatePool(function() {
     console.log("线程池创建成功");
   }).build();
 }
 
-// 使用线程池执行任务
-function photoPool() {
-  vCPU.getInstance().poolName('testPool').task(takePhoto).taskType('IO')
-  .onRun(function (value) {
+// 使用线程池执行录音任务
+function record() {
+  Mic.getInstance().attr(new mic_start()).onOriginData(function (result) {
+    console.log("回调了录音时间：" + result);
+    setRecordTime(result);
+  }).build();
+}
+
+function runRecord() {
+  vCPU.getInstance().poolName('testPool').task(record).taskType('IO')
+  .onRun(function (result) {
+    console.log(result);
+  }).build();
+}
+
+// 使用线程池执行在副屏上拍照任务
+function takePhoto() {
+  Cameras().operate('takePhoto').setCamObj(camera.current).skipMetadata(true)
+  .onPhoto((value) => {
     console.log("照片保存路径：" + value);
+    photopath = value;
+  }).build();
+}
+
+function display() {
+  Screen.getInstance().operate('play').content(cameraUI).displayType('back')
+  .resolution('1920*1080').brightness(80).orientation(0).refreshRate(60).build();
+}
+
+function runCamera() {
+  vCPU.getInstance().poolName('testPool').task(display).task(takePhoto)
+  .taskType('IO').onRun(function (result) {
+    console.log(result);
   }).build();
 }
 
