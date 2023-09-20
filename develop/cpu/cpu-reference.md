@@ -22,12 +22,41 @@ function createPool() {
   });
 }
 
-// 使用线程池执行任务
+// 使用线程池执行录音任务
 @Scenarios
-function photoPool() {
-  vCPU().poolName('testPool').task(takePhoto).taskType('IO')
-  .onRun(function (value) {
+function record() {
+  Mic().attr(new mic_start()).onOriginData(function (result) {
+    console.log("回调了录音时间：" + result);
+    setRecordTime(result);
+  });
+}
+
+function runRecord() {
+  vCPU().poolName('testPool').task(record).taskType('IO')
+  .onRun(function (result) {
+    console.log(result);
+  });
+}
+
+// 使用线程池执行在副屏上拍照任务
+@Scenarios
+function takePhoto() {
+  Cameras().operate('takePhoto').setCamObj(camera.current).skipMetadata(true)
+  .onPhoto((value) => {
     console.log("照片保存路径：" + value);
+    photopath = value;
+  });
+}
+
+function display() {
+  Screen().operate('play').content(cameraUI).displayType('back')
+  .resolution('1920*1080').brightness(80).orientation(0).refreshRate(60);
+}
+
+function runCamera() {
+  vCPU().poolName('testPool').task(display).task(takePhoto).taskType('IO')
+  .onRun(function (result) {
+    console.log(result);
   });
 }
 
