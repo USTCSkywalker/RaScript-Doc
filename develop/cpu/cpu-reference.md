@@ -54,7 +54,7 @@ function display() {
 }
 
 function runCamera() {
-  vCPU().poolName('testPool').task(display).task(takePhoto).taskType('IO')
+  vCPU().poolName('testPool').task(display, IO).task(takePhoto, IO)
   .onRun(function (result) {
     console.log(result);
   });
@@ -130,8 +130,8 @@ function display() {
 }
 
 function runCamera() {
-  vCPU.getInstance().poolName('testPool').task(display).task(takePhoto)
-  .taskType('IO').onRun(function (result) {
+  vCPU.getInstance().poolName('testPool').task(display, IO).task(takePhoto, IO)
+  .onRun(function (result) {
     console.log(result);
   }).build();
 }
@@ -161,7 +161,7 @@ function cpuListenerStart() {
 
 #### 静态属性
 
-<table><thead><tr><th width="159">参数</th><th width="243">说明</th><th width="234">类型</th><th>备注</th></tr></thead><tbody><tr><td>deviceType</td><td>设备管理类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>CPU捕获操作</td><td>String[]</td><td>可选</td></tr><tr><td>taskType</td><td>待执行任务的类型（CPU敏感型/GPU敏感型/IO敏感型）</td><td>'CPU' | 'GPU' | 'IO'</td><td>可选</td></tr><tr><td>task</td><td>待执行任务</td><td>Object</td><td>可选</td></tr><tr><td>poolName</td><td>线程池名称</td><td>String</td><td>可选</td></tr><tr><td>threadPool</td><td>线程池的核心线程数</td><td>Int</td><td>可选</td></tr><tr><td>maxPool</td><td>线程池的最大线程数</td><td>Int</td><td>可选</td></tr><tr><td>execMode</td><td>线程池任务执行方式</td><td>'Async' | 'Sync'</td><td></td></tr><tr><td>powerMode</td><td>CPU性能模式</td><td>'Performance' | 'Balance' | 'Efficiency' | 'PowerSaving'</td><td></td></tr><tr><td>id</td><td>线程ID</td><td>Long</td><td>可选</td></tr><tr><td>threadName</td><td>线程名称</td><td>String</td><td>可选</td></tr><tr><td>priority</td><td>线程优先级</td><td>Int</td><td>可选</td></tr><tr><td>state</td><td>线程状态</td><td>Enum&#x3C;></td><td>可选</td></tr><tr><td>keepAliveTime</td><td>线程存活时长</td><td>Long</td><td>可选</td></tr><tr><td>sleeptime</td><td>线程休眠时长</td><td>Long</td><td>可选</td></tr><tr><td>timeUnit</td><td>时间单位</td><td>'Microseconds' | 'Milliseconds' | 'Seconds' | 'Minutes' | 'Hours'</td><td>可选</td></tr></tbody></table>
+<table><thead><tr><th width="159">参数</th><th width="243">说明</th><th width="234">类型</th><th>备注</th></tr></thead><tbody><tr><td>deviceType</td><td>设备管理类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>CPU捕获操作</td><td>String[]</td><td>可选</td></tr><tr><td>taskType</td><td>待执行任务的类型（CPU敏感型/GPU敏感型/IO敏感型）</td><td>'CPU' | 'GPU' | 'IO'</td><td>可选</td></tr><tr><td>task</td><td>待执行任务，可选填任务类型</td><td>Object, taskType</td><td>可选</td></tr><tr><td>poolName</td><td>线程池名称</td><td>String</td><td>可选</td></tr><tr><td>threadPool</td><td>线程池的核心线程数</td><td>Int</td><td>可选</td></tr><tr><td>maxPool</td><td>线程池的最大线程数</td><td>Int</td><td>可选</td></tr><tr><td>execMode</td><td>线程池任务执行方式</td><td>'Async' | 'Sync'</td><td></td></tr><tr><td>powerMode</td><td>CPU性能模式</td><td>'Performance' | 'Balance' | 'Efficiency' | 'PowerSaving'</td><td></td></tr><tr><td>id</td><td>线程ID</td><td>Long</td><td>可选</td></tr><tr><td>threadName</td><td>线程名称</td><td>String</td><td>可选</td></tr><tr><td>priority</td><td>线程优先级</td><td>Int</td><td>可选</td></tr><tr><td>state</td><td>线程状态</td><td>Enum&#x3C;></td><td>可选</td></tr><tr><td>keepAliveTime</td><td>线程存活时长</td><td>Long</td><td>可选</td></tr><tr><td>sleeptime</td><td>线程休眠时长</td><td>Long</td><td>可选</td></tr><tr><td>timeUnit</td><td>时间单位</td><td>'Microseconds' | 'Milliseconds' | 'Seconds' | 'Minutes' | 'Hours'</td><td>可选</td></tr></tbody></table>
 
 #### 抽象动作
 
