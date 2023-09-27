@@ -34,7 +34,7 @@ function writeMmap() {
 
 // 读取共享内存文件中的数据
 @Scenarios
-function createMmap() {
+function readMmap() {
   Memory().name('testSharedMemory').prot('Read').offset(32).length(128)
   .mmapoprate('Read').onMap(function(result) {
     console.log(result);
