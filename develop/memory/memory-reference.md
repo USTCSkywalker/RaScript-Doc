@@ -4,7 +4,7 @@
 
 {% code lineNumbers="true" %}
 ```javascript
-// 创建共享内存区域
+// 使用共享内存文件传输录像数据
 @Scenarios
 function createSharedMemory() {
   Memory().name('testSharedMemory').size(256).onCreateSharedMemory(function() {
@@ -12,11 +12,32 @@ function createSharedMemory() {
   });
 }
 
-// 创建共享内存的内存映射
+function cameraRecording() {
+  Cameras().operate('startRecording').setCamObj(camera.current);
+}
+
+function stopCamRecording() {
+  Cameras().operate('stopRecording').setCamObj(camera.current)
+  .onRecordingFinished((result: any) => {
+    console.log("recording path: " + result.path);
+    videopath = result.path;
+  });
+}
+
+// 将数据写入共享内存文件
+function writeMmap() {
+  Memory().name('testSharedMemory').prot('Write').offset(32).length(128)
+  .task(stopCamRecording).onMap(function(result) {
+    console.log(result);
+  });
+}
+
+// 读取共享内存文件中的数据
 @Scenarios
 function createMmap() {
-  Memory().name('testSharedMemory').prot('READ').offset(32).length(128).onMap(function() {
-    console.log("内存映射已创建");
+  Memory().name('testSharedMemory').prot('Read').offset(32).length(128)
+  .onMap(function(result) {
+    console.log(result);
   });
 }
 
@@ -100,7 +121,7 @@ function memListenerStart() {
 
 #### 静态属性
 
-<table><thead><tr><th width="147">参数</th><th width="241">说明</th><th width="157">类型</th><th>备注</th></tr></thead><tbody><tr><td>memoryType</td><td>内存类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>内存相关操作</td><td>String[]</td><td>可选</td></tr><tr><td>scope</td><td>变量作用范围</td><td>String[]</td><td>可选</td></tr><tr><td>content</td><td>变量</td><td>Object</td><td>可选</td></tr><tr><td>name</td><td>共享内存名称</td><td>String</td><td>可选</td></tr><tr><td>size</td><td>共享内存大小</td><td>Int</td><td></td></tr><tr><td>prot</td><td>共享内存映射区域的权限</td><td>'Read' | 'Write' | 'Exec' | 'None'</td><td>可选</td></tr><tr><td>offset</td><td>共享内存映射区域的偏移量</td><td>Int</td><td>可选。必须>=0且小于onGetSharedMemorySize()</td></tr><tr><td>length</td><td>共享内存映射区域的长度</td><td>Int</td><td>可选。必须>0且offset+length不能超过onGetSharedMemorySize()</td></tr></tbody></table>
+<table><thead><tr><th width="147">参数</th><th width="241">说明</th><th width="157">类型</th><th>备注</th></tr></thead><tbody><tr><td>memoryType</td><td>内存类型</td><td>String</td><td></td></tr><tr><td>operation</td><td>内存相关操作</td><td>String[]</td><td>可选</td></tr><tr><td>scope</td><td>变量作用范围</td><td>String[]</td><td>可选</td></tr><tr><td>content</td><td>变量</td><td>Object</td><td>可选</td></tr><tr><td>task</td><td>使用共享内存的任务</td><td>Object</td><td>可选</td></tr><tr><td>name</td><td>共享内存名称</td><td>String</td><td>可选</td></tr><tr><td>size</td><td>共享内存大小</td><td>Int</td><td></td></tr><tr><td>prot</td><td>共享内存映射区域的权限</td><td>'Read' | 'Write' | 'Exec' | 'None'</td><td>可选</td></tr><tr><td>offset</td><td>共享内存映射区域的偏移量</td><td>Int</td><td>可选。必须>=0且小于onGetSharedMemorySize()</td></tr><tr><td>length</td><td>共享内存映射区域的长度</td><td>Int</td><td>可选。必须>0且offset+length不能超过onGetSharedMemorySize()</td></tr></tbody></table>
 
 #### 抽象动作
 
